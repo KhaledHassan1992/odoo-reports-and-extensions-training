@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+# Copyright (c) 2019 Openfellas (http://openfellas.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contact support@openfellas.com
+#
+##############################################################################
+-->
+<odoo>
+    <data>
+        <report
+            id="report_sumesh_sale_order"
+            string="Sumesh - Sale Order"
+            model="sale.order"
+            report_type="qweb-pdf"
+            name="sumesh_reports.report_sumesh_saleorder"
+        />
+        
+        <record id="paperformat_sumesh_A4" model="report.paperformat">
+            <field name="name">A4 Sumesh Reports</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">15</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">50</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[
+                                                ref('sumesh_reports.report_sumesh_sale_order'),
+                                                    ])]"/>
+        </record>
+
+
+        
+    </data>
+</odoo>

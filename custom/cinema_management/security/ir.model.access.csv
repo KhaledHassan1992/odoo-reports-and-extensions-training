@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_room_management_manager,access.room.management.manager,model_room_management,group_cinema_manager,1,1,1,1
+access_timetable_management_manager,access.timetable.management.manager,model_timetable_management,group_cinema_manager,1,1,1,1
+access_movie_management_manager,access.movie.management.manager,model_movie_management,group_cinema_manager,1,1,1,1
+access_cinema_report_manager,access.cinema.report.manager,model_cinema_report,group_cinema_manager,1,1,1,1
+access_room_management_user,access.room.management.user,cinema_management.model_room_management,cinema_management.group_cinema_user,1,0,0,0
+access_timetable_management_user,access.timetable.management.user,cinema_management.model_timetable_management,cinema_management.group_cinema_user,1,0,0,0
+access_movie_management_user,access.movie.management.user,cinema_management.model_movie_management,cinema_management.group_cinema_user,1,0,0,0
+access_cinema_report_user,access.cinema.report.user,cinema_management.model_cinema_report,cinema_management.group_cinema_user,1,0,0,0
+access_movie_management,cinema_management.cinema_management,model_movie_management,,1,1,1,1

@@ -1,0 +1,114 @@
+/*
+ * Copyright (c) 2019 Openfellas (http://openfellas.com) All Rights Reserved.
+ *
+ * WARNING: This program as such is intended to be used by professional
+ * programmers who take the whole responsibility of assessing all potential
+ * consequences resulting from its eventual inadequacies and bugs
+ * End users who are looking for a ready-to-use solution with commercial
+ * guarantees and support are strongly advised to contract support@openfellas.com
+*/
+
+@font-face {
+    font-family: 'NunitoSans-Regular';
+    src:url('../fonts/NunitoSans-Regular.ttf');
+}
+
+.page {
+    font-family: 'NunitoSans-Regular';
+    position: relative;
+}
+
+
+.some-class {
+    font-size: 12pt;
+}
+
+.border_top {
+    border-top: 1px solid black;
+}
+
+.border_bottom {
+    border-bottom: 1px solid black;
+}
+
+.border_left {
+    border-left: 1px solid black;
+}
+
+.border_right {
+    border-right: 1px solid black;
+}
+
+.width-total {
+    width: 100%;
+}
+
+.padding_rl {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.padding_r {
+    padding-right: 10px;
+}
+
+.order_col1 {
+    width: 50%;
+}
+
+.order_col2 {
+    width: 40%;
+}
+
+.table_width {
+    width: 95%;
+}
+
+.table_border {
+    border: 1px solid black;
+}
+
+.light_gray {
+    background-color: rgb(240, 240, 240);
+}
+
+.alignment_c {
+    text-align: center;
+}
+
+.alignment_l {
+    text-align: left;
+}
+
+.alignment_r {
+    text-align: right;
+}
+
+.table_r {
+    float: right;
+    width: 50%;
+}
+
+.table_3 {
+    float: left;
+    width: 50%;
+}
+
+.table_4 {
+    float: right;
+    width: 50%;
+}
+
+.gray {
+    color: Gray;
+}
+
+.title_container_1 {
+    width: 50%;
+    float: left;
+    bottom: 0;
+}
+.title_container_2 {
+    width: 50%;
+    display:inline-block;
+}

@@ -1,0 +1,68 @@
+<odoo>
+
+    <!-- explicit tree view definition -->
+    <record id="timetable_management_view_tree" model="ir.ui.view">
+        <field name="name">timetable_management_tree</field>
+        <field name="model">timetable.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="movie"/>
+                <field name="premier"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- explicit form view definition -->
+    <record id="timetable_management_view_form" model="ir.ui.view">
+        <field name="name">timetable_management_form</field>
+        <field name="model">timetable.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                            name="%(cinema_management.sell_ticket_wizard)d"
+                            type="action"
+                            string="Sell Ticket"
+                            class="oe_highlight"
+                            context="{'movie_id': movie}"
+                    />
+                    <button
+                            name="print_timetable"
+                            type="object"
+                            string="Print"
+                            class="oe_highlight"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="movie"/>
+                        <field name="premier"/>
+                        <field name="total_seats"/>
+                        <field name="sold_seats"/>
+                        <field name="remaining_seats"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record id="timetable_management_action" model="ir.actions.act_window">
+        <field name="name">timetable management window</field>
+        <field name="res_model">timetable.management</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- action menu categories -->
+    <menuitem id="timetable_management_menu" name="Timetable" parent="cinema_management_menu_root"
+              action="timetable_management_action" sequence="2"/>
+
+</odoo>

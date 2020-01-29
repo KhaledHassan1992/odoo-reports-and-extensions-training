@@ -1,0 +1,1 @@
+DELETE FROM ir_translation WHERE module = 'sumesh_extensions';

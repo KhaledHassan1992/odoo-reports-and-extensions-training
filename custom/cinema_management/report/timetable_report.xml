@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="timetable_report"
+        string="Timetable Report"
+        model="timetable.management"
+        report_type="qweb-pdf"
+        file="cinema_management.timetable_report"
+        name="cinema_management.timetable_report"
+    />
+</odoo>

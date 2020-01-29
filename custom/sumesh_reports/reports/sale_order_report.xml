@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+# Copyright (c) 2019 Openfellas (http://openfellas.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contact support@openfellas.com
+#
+##############################################################################
+-->
+
+<odoo>
+    <data>
+        <template id="report_sumesh_saleorder_document">
+            <t t-call="sumesh_reports.sumesh_external_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+                <div class="page">
+                    <small>
+                        <span t-field="doc.partner_id.name"/><br/>
+                        <span t-field="doc.partner_id.street"/><br/>
+                        <span t-field="doc.partner_id.zip"/>
+                        <span t-field="doc.partner_id.city"/><br/>
+                        <span t-field="doc.partner_id.state_id"/>
+                        <span t-field="doc.partner_id.country_id"/><br/>
+                    </small>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <div class="width-total">
+                        <div class="title_container_1">
+                            <br></br>
+                            <h3>
+                                <span t-if="doc.state not in ['draft','sent']">Order # </span>
+                                <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                                <span t-field="doc.name"/>
+                            </h3>
+                            <small>
+                                <span>Currency:        </span>
+                                <span  t-field="doc.currency_id.name"/>
+                            </small>
+                        </div>
+                        <div class="title_container_2">
+                            <small>
+                                <table class="table_r">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="order_col1">
+                                                <span>Order ID:</span>
+                                            </td>
+                                            <td class="order_col2">
+                                                <span t-field="doc.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="order_col1">
+                                                <span>Customer ID:</span>
+                                            </td>
+                                            <td class="order_col2">
+                                                <span t-field="doc.partner_id.ref"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="order_col1">
+                                                <span>Date:</span>
+                                            </td>
+                                            <t t-set="date" t-value="get_date()"/>
+                                            <td class="order_col2">
+                                                <span t-esc="date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="order_col1">
+                                                <span>Date Order:</span>
+                                            </td>
+                                            <td class="order_col2">
+                                                <span t-field="doc.date_order" t-options='{"format": "dd.MM.yyyy"}'/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </small>
+                        </div>
+                    </div>
+                    <br></br>
+                    <small>
+                        <table class="table_border width-total">
+                            <thead>
+                                <tr>
+                                    <th class="table_border light_gray alignment_c padding_rl">Pos</th>
+                                    <th class="table_border light_gray alignment_c padding_rl">Quantity</th>
+                                    <th class="table_border light_gray alignment_c">Article No.</th>
+                                    <th class="table_border light_gray alignment_c">Description</th>
+                                    <th class="table_border light_gray alignment_c padding_rl">Tax</th>
+                                    <th class="table_border light_gray alignment_c padding_rl">Unit Price</th>
+                                    <th class="table_border light_gray alignment_c padding_rl">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.order_line" t-as="line">
+                                    <tr>
+                                        <t t-set="counter" t-value="get_counter()"/>
+                                        <td class="table_border alignment_c">
+                                            <span t-esc="counter"/>
+                                        </td>
+                                        <td class="table_border alignment_c">
+                                            <t t-if="line.product_uom_qty.is_integer()">
+                                                <span t-esc="'{0:,.0f}'.format(line.product_uom_qty)"/>
+                                            </t>
+                                            <t t-if="not line.product_uom_qty.is_integer()">
+                                                <span t-esc="'{0:,.2f}'.format(line.product_uom_qty)"/>
+                                            </t>
+                                        </td>
+                                        <td class="table_border alignment_c">
+                                            <span t-field="line.product_id.default_code"/>
+                                        </td>
+                                        <td class="table_border alignment_l padding_l">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <td class="table_border alignment_r padding_l padding_r">
+                                            <span t-field="line.price_tax"/>
+                                        </td>
+                                        <td class="table_border alignment_r padding_r">
+                                            <span t-field="line.price_unit"/>
+                                        </td>
+                                        <td class="table_border alignment_r padding_r">
+                                            <span t-field="line.price_subtotal"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </small>
+                    <div class="width-total">
+                        <div class="title_container_1">
+                            <small>
+                                <small>
+                                    <table class="table_3">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="alignment_l">
+                                                <td class="order_col1">
+                                                    <span>Order ID:</span>
+                                                </td>
+                                                <td class="order_col1">
+                                                    <span t-field="doc.name"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="alignment_l">
+                                                <td class="order_col1">
+                                                    <span>Date:</span>
+                                                </td>
+                                                <t t-set="date" t-value="get_date()"/>
+                                                <td class="order_col1">
+                                                    <span t-esc="date"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="alignment_l">
+                                                <td class="order_col1">
+                                                    <span>Date Order:</span>
+                                                </td>
+                                                <td class="order_col1">
+                                                    <span t-field="doc.date_order" t-options='{"format": "dd.MM.yyyy"}'/>
+                                                </td>
+                                            </tr>
+                                            <tr class="alignment_l">
+                                                <td class="order_col1">
+                                                    <span>Delivery Address:</span>
+                                                </td>
+                                                <td class="order_col1">
+                                                    <span t-field="doc.partner_id.name"/>
+                                                    <br/>
+                                                    <span t-field="doc.partner_id.street"/>
+                                                    <br/>
+                                                    <span t-field="doc.partner_id.zip"/>
+                                                    <span t-field="doc.partner_id.city"/>
+                                                    <br/>
+                                                    <span t-field="doc.partner_id.state_id"/>
+                                                    <span t-field="doc.partner_id.country_id"/>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </small>
+                            </small>
+                        </div>
+                        <div class="title_container_2">
+                            <table class="table_4">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="alignment_r">
+                                        <td class="order_col1">
+                                            <span>Order ID:</span>
+                                        </td>
+                                        <td class="order_col1 table_border padding_r">
+                                            <span t-field="doc.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="alignment_r">
+                                        <td class="order_col1">
+                                            <span>Customer ID:</span>
+                                        </td>
+                                        <td class="order_col1 table_border padding_r">
+                                            <span t-field="doc.partner_id.ref"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="alignment_r">
+                                        <td class="order_col1">
+                                            <span>Date:</span>
+                                        </td>
+                                        <t t-set="date" t-value="get_date()"/>
+                                        <td class="order_col1 table_border padding_r">
+                                            <span t-esc="date"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="alignment_r">
+                                        <td class="order_col1">
+                                            <span>Date Order:</span>
+                                        </td>
+                                        <td class="order_col1 table_border padding_r">
+                                            <span t-field="doc.date_order" t-options='{"format": "dd.MM.yyyy"}'/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_sumesh_saleorder">
+            <t t-call="sumesh_reports.sumesh_html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="sumesh_reports.report_sumesh_saleorder_document" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sale_report_templates_inherit" inherit_id="sale.report_saleorder_document">
+
+        <xpath expr="//table/thead/tr/th[1]" position="before">
+            <th>
+                <span class="text-left">Pos.</span>
+            </th>
+        </xpath>
+
+        <xpath expr="//tbody/t/tr/t/td[1]" position="before">
+            <t t-set="counter" t-value="get_counter()"/>
+            <td>
+                <span t-esc="counter"/>
+            </td>
+        </xpath>
+
+    </template>
+</odoo>

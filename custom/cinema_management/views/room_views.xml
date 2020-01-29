@@ -1,0 +1,46 @@
+<odoo>
+
+
+    <!-- explicit tree view definition -->
+    <record id="room_management_view_tree" model="ir.ui.view">
+        <field name="name">room_management_tree</field>
+        <field name="model">room.management</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="timetable_ids"/>
+                <field name="capacity"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <!-- explicit form view definition -->
+    <record id="room_management_view_form" model="ir.ui.view">
+        <field name="name">room_management_form</field>
+        <field name="model">room.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="timetable_ids"/>
+                        <field name="capacity"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record id="room_management_action" model="ir.actions.act_window">
+        <field name="name">room management window</field>
+        <field name="res_model">room.management</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- action menu categories -->
+    <menuitem id="room_management_menu" name="Rooms" parent="cinema_management_menu_root"
+              action="room_management_action" sequence="3"/>
+
+</odoo>

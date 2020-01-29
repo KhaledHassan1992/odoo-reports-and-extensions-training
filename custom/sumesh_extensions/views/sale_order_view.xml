@@ -1,0 +1,97 @@
+<odoo>
+
+        <record id="sale_order_other_information" model="ir.ui.view">
+            <field name="name">sale_order_other_information</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@name='other_information']/group/group/field[@name='client_order_ref']" position="after">
+                    <field name="ref_name"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Sale order menu tree -->
+        <record id="sale_order_menu_tree" model="ir.ui.view">
+          <field name="name">sale_order_menu_tree</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_order_tree"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='user_id']" position="after">
+                      <field name="sales_code"/>
+                      <field name="ref_name"/>
+              </xpath>
+          </field>
+        </record>
+
+        <!-- Quotations menu tree -->
+        <record id="Quotations_menu_tree" model="ir.ui.view">
+          <field name="name">Quotations_menu_tree</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_quotation_tree"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='user_id']" position="after">
+                      <field name="sales_code"/>
+              </xpath>
+          </field>
+        </record>
+
+        <!-- Sale Order Group By -->
+        <record id="sale_order_group_by" model="ir.ui.view">
+          <field name="name">sale_order_group_by</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+          <field name="arch" type="xml">
+              <xpath expr="//filter[@name='order_month']" position="after">
+                      <filter name="sales_code" string="SALES CODE" domain="[]" context="{'group_by':'sales_code'}"/>
+              </xpath>
+          </field>
+        </record>
+
+        <!-- Sale Order Search View -->
+        <record id="sale_order_search_view" model="ir.ui.view">
+          <field name="name">sale_order_search_view</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+          <field name="arch" type="xml">
+              <search string="Search Sales Order">
+                  <field name="sales_code" string="SALES CODE"/>
+              </search>
+          </field>
+        </record>
+
+        <!-- Sale Order Action for Button -->
+        <record id="action_sale_order_line" model="ir.actions.act_window">
+            <field name="name">Sale_order_lines_button</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('order_id', '=', active_id)]</field>
+        </record>
+
+        <!-- sale order form view definition -->
+        <record id="sale_order_menu_form" model="ir.ui.view">
+          <field name="name">sale_order_menu_form</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_order_form"/>
+          <field name="arch" type="xml">
+              <div class="oe_button_box" name="button_box">
+                    <button name="%(action_sale_order_line)d" type="action" icon="fa-arrow-right" class="oe_stat_button">
+                        <field name="sale_order_line_count" string="Sale Order Lines" widget="statinfo"/>
+                    </button>
+              </div>
+          </field>
+        </record>
+
+        <!-- Quotations form view definition -->
+        <record id="Quotations_menu_form" model="ir.ui.view">
+          <field name="name">Quotations_menu_form</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_order_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='payment_term_id']" position="after">
+                      <field name="sales_code" force_save="1"/>
+              </xpath>
+          </field>
+        </record>
+
+</odoo>

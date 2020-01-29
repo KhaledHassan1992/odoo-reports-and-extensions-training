@@ -1,0 +1,1 @@
+delete from ir_translation where module = 'cinema_management';

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+# Copyright (c) 2019 Openfellas (http://openfellas.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contract support@openfellas.com
+#
+##############################################################################
+-->
+
+<!--
+When declaring a record in XML:
+
+    - Place id attribute before model
+
+    - For field declarations, the name attribute is first. Then place the value either in the field tag, either in the
+    eval attribute, and finally other attributes (widget, options, ...) ordered by importance.
+
+    - Try to group the records by model. In case of dependencies between action/menu/views, the convention may not be
+    applicable.
+
+    - Do not prefix the xmlid by the current module's name
+    (<record id="view_id"..., not <record id="current_module.view_id"...)
+
+
+    // // //
+
+
+    - Use the following patterns, where <model_name> is the name of the model that the menu, view, etc. belongs to
+    (e.g. for a res.users form view, the name would be res_users_view_form):
+
+        - For a menu: <model_name>_menu
+
+        - For a view: <model_name>_view_<view_type>, where view_type is kanban, form, tree, search, ...
+
+        - For an action: the main action respects <model_name>_action. Others are suffixed with _<detail>,
+        where detail is an underscore lowercase string explaining the action (should not be long).
+        This is used only if multiple actions are declared for the model.
+
+        - For a group: <model_name>_group_<group_name> where group_name is the name of the group, generally 'user',
+        'manager', ...
+
+
+    // // //
+
+    - A module can extend a view only one time.
+
+    - The naming rules should be followed even when a view is inherited, the module name prevents xid conflicts.
+
+    - In the case where an inherited view has a name which does not follow the guidelines set above, prefer naming the
+    inherited view after the original over using a name which follows the guidelines.
+
+    - Use of <... position="replace"> is not recommended because could show the error Element ... cannot be located in
+    parent view from other inherited views with this field.
+
+    - We can hide an element from the view using invisible="1".
+-->
+
+<odoo>
+    <data>
+
+        <record id="model_name_view_form" model="ir.ui.view">
+            <field name="name">My view description</field>
+            <field name="model">model.name</field>
+            <field name="arch" type="xml">
+                <form string="My Data">
+                    <!-- My view content -->
+                </form>
+            </field>
+        </record>
+
+        <record id="form_view" model="ir.ui.view">
+            <field name="name">My view description</field>
+            <field name="model">model.name</field>
+            <field name="inherit_id" ref="othermodule.form_view"/>
+            <field name="arch" type="xml">
+                <!-- My view modifications -->
+            </field>
+        </record>
+
+    </data>
+</odoo>

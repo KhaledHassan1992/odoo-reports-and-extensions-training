@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="email_template_cinema_management" model="mail.template">
+            <field name="name">Ticket: Send by email</field>
+            <field name="model_id" ref="cinema_management.model_ticket_wizard"/>
+            <field name="email_from">${object.env.user.email}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="subject">Cinema Ticket for ${object.partner_id.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.partner_id.name}
+                        <br/>
+                        <br/>
+                        Here is your ticket for the movie: ${object.product_id.name}
+                        <br/>
+                        <br/>
+                        Number of seats booked: ${object.tickets}
+                        <br/>
+                        <br/>
+                        Price per ticket: ${format_amount(object.product_id.lst_price, object.product_id.currency_id)}
+                        <br/>
+                        <br/>
+                        Total price: ${format_amount(ctx['total_amount'], object.product_id.currency_id)}
+                        <br/>
+                        <br/>
+                        Invoiced date: ${format_date(ctx['invoice_date'])}
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any question.
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+        </record>
+    </data>
+</odoo>

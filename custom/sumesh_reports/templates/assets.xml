@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+# Copyright (c) 2019 Openfellas (http://openfellas.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contract support@openfellas.com
+#
+##############################################################################
+-->
+
+<odoo>
+    <data>
+
+        <template id="assets_common" inherit_id="web.assets_common">
+            <xpath expr=".">
+                <link rel="stylesheet" href="/module/static/src/css/module_name.css"/>
+                <script type="text/javascript" src="/module/static/src/js/module_name.js"/>
+            </xpath>
+        </template>
+
+        <template id="assets_backend" inherit_id="web.assets_backend">
+            <xpath expr=".">
+                <link rel="stylesheet" href="/module/static/src/css/module_name.css"/>
+                <script type="text/javascript" src="/module/static/src/js/module_name.js"/>
+            </xpath>
+        </template>
+
+        <template id="assets_frontend" inherit_id="website.assets_frontend">
+            <xpath expr=".">
+                <link rel="stylesheet" href="/module/static/src/css/module_name.css"/>
+                <script type="text/javascript" src="/module/static/src/js/module_name.js"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

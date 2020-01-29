@@ -1,0 +1,32 @@
+<odoo>
+
+    <!-- explicit form view definition -->
+    <record id="ticket_management_view_form" model="ir.ui.view">
+        <field name="name">ticket_form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price']" position="after">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="e_ticket"/>
+                        </group>
+                    </sheet>
+                </form>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record id="ticket_management_action" model="ir.actions.act_window">
+        <field name="name">ticket management window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- action menu categories -->
+    <menuitem id="Tickets_menu" name="Tickets" parent="cinema_management_menu_root" action="ticket_management_action"
+              sequence="4"/>
+
+</odoo>
