@@ -27,7 +27,7 @@
         <field name="src_model">timetable.management</field>
         <field name="res_model">ticket.wizard</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="sell_ticket_form"/>
+        <field name="view_id" ref="sell_ticket_view_form"/>
         <field name="target">new</field>
     </record>
 
