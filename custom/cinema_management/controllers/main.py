@@ -11,14 +11,21 @@
 #
 ##############################################################################
 
-################################################################################
-# If there is only one file it should be named main.py.
-# If there are several controller classes or functions you can split them into
-# several files.
-#
-# Filenames should use only [a-z0-9_]
-# Use correct file permissions: folders 755 and files 644.
-################################################################################
+# 1: imports of python lib
+import logging
+
+# 2: import of known third party lib
+
+# 3:  imports of odoo
+from odoo import http
+
+# 4:  imports from odoo modules
+
+# 5: local imports
+
+# 6: Import of unknown third party lib
+_logger = logging.getLogger(__name__)
 
 
-from . import main
+class MyController(http.Controller):
+    pass
