@@ -12,7 +12,12 @@ class MovieManagement(models.Model):
         required=True,
     )
     genre = fields.Selection(
-        selection=[('a', 'Comedy'), ('b', 'Action'), ('c', 'Animated'), ('d', 'Horror')],
+        selection=[
+            ('a', 'Comedy'),
+            ('b', 'Action'),
+            ('c', 'Animated'),
+            ('d', 'Horror'),
+        ],
     )
     release_year = fields.Integer(
         string='Release Year',

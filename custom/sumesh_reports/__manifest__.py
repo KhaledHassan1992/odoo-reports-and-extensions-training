@@ -29,7 +29,7 @@
         # "templates/assets.xml",
         # "views/report_name.xml",
         # "views/model_name_view.xml",
-        "sumesh_reports.xml",
+        "reports/sumesh_reports.xml",
         "reports/layouts.xml",
         "reports/sale_order_report.xml",
         # "wizards/wizard_model_view.xml",

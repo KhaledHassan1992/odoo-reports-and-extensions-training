@@ -1,12 +1,10 @@
 {
-    'name': "cinema_management",
+    'name': "Cinema management",
 
-    'summary': """
-        Really short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    'summary': """Cinema management""",
 
     'description': """
-        Long description of module's purpose
+       This module implements cinema management
     """,
 
     'author': "My Company",
