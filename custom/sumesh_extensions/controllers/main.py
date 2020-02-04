@@ -11,21 +11,15 @@
 #
 ##############################################################################
 
-# 1: imports of python lib
-import logging
-
-# 2: import of known third party lib
-
-# 3:  imports of odoo
-from odoo import http
-
-# 4:  imports from odoo modules
-
-# 5: local imports
-
-# 6: Import of unknown third party lib
-_logger = logging.getLogger(__name__)
+from odoo.http import route
+from odoo.server.addons.portal.controllers.portal import CustomerPortal
 
 
-class MyController(http.Controller):
-    pass
+class WebsitePortal(CustomerPortal):
+    #OPTIONAL_BILLING_FIELDS = ["zipcode", "state_id", "vat", "sex", "company_name"]
+
+    @route(['/my/account'], type='http', auth='user', website=True)
+    def account(self, redirect=None, **post):
+        res = super(WebsitePortal, self).account(redirect=None, **post)
+        print(res)
+        return res

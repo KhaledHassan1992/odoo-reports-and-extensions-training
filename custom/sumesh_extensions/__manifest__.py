@@ -33,6 +33,7 @@
         "views/account_invoice_view.xml",
         "views/sale_order_line_view.xml",
         "views/account_invoice_line_view.xml",
+        "views/res_partner_view.xml",
         "reports/sale_report_templates_inherit.xml",
         # "wizards/wizard_model_view.xml",
     ],
